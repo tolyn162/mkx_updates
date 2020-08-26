@@ -24,7 +24,8 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
-      run: cat ./oldChar
+      run: |
+        cat ./oldChar
     
     - name: Display path
       run: echo $GITHUB_WORKSPACE
