@@ -19,7 +19,7 @@ if [ "$newChar" == "$oldChar" ]; then
 	exit 1
 fi
 
-# echo "$newChar" > ./oldChar
+echo "$newChar" > ./oldChar
 
 duration=$(
 	echo "$content" |
