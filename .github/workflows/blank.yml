@@ -12,6 +12,9 @@ jobs:
 
     steps:  
     - uses: actions/checkout@v2
+
+    - name: Dependencies
+      run: cat packages.txt | xargs sudo apt-get install 
       
     - name: Scrape
       run: ./scrape.sh && cat uids | while read line; do ./notify.sh "$line"; done
