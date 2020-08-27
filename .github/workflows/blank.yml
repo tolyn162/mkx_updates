@@ -16,3 +16,16 @@ jobs:
       
     - name: Scrape
       run: ./scrape.sh && cat uids | while read line; do ./notify.sh "$line"; done
+    
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Github Action"
+        git add ./oldChar
+        git commit -m "Update character"
+    
+    - name: Push Changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
