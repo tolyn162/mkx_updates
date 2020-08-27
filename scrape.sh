@@ -16,9 +16,11 @@ oldChar=$(cat oldChar)
 
 if [ "$newChar" == "$oldChar" ]; then
 	echo No change
-	exit 1
+	echo no > ./update
+	exit 0
 fi
 
+echo yes > ./update
 echo "$newChar" > ./oldChar
 
 duration=$(
