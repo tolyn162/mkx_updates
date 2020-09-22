@@ -17,6 +17,7 @@ oldChar=$(cat oldChar)
 if [ "$newChar" == "$oldChar" ]; then
 	echo No change
 	echo no > ./update
+	exit 0
 fi
 
 echo yes > ./update
