@@ -1,0 +1,35 @@
+.github / рабочие процессы / blank.yml
+имя : Главный
+
+на :
+  расписание :
+  - cron : " 0 2,11 * * * "
+
+вакансии :
+  проверить :
+    работает : ubuntu-latest
+
+    шаги :  
+    - использует : actions / checkout @ v2
+
+    - имя : Зависимости
+      запустить : cat packages.txt | xargs sudo apt-get install
+      
+    - название : Scrape
+      запустить : ./scrape.sh
+
+    - имя : Уведомить
+      запустить : если ["$ (cat ./update)" = "да"]; затем кошка uids | при чтении строки; do ./notify.sh "$ line"; сделанный; фи
+    
+    - name : зафиксировать изменения
+      запустить : |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Действие Github"
+        git add ./oldChar
+        git commit -m "Обновить символ" || эхо Без изменений
+    
+    - имя : Push Changes
+      использует : ad-m / github-push-action @ master
+      с :
+        github_token : $ {{secrets.GITHUB_TOKEN}}
+        сила : правда
